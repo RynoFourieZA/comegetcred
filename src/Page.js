@@ -25,7 +25,6 @@ const Page = () => {
   const closeBtn = () => {
     setOpenModal(false);
   };
-  console.log(items);
   return (
     <section className="container">
        {items.map(({ name, type, card_images }, i) => (
