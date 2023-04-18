@@ -9,11 +9,11 @@ const Page = () => {
 
   useEffect(() => {
     fetch(
-      `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=dd30ec9b51794fafbf09a3f65d7eeb12`
+      `https://db.ygoprodeck.com/api/v7/cardinfo.php`
     )
       .then((res) => res.json())
       .then((data) => {
-        setItems(data.articles.slice(0, 9));
+        setItems(data.data.slice(0, 9));
       });
   }, []);
 
@@ -25,52 +25,56 @@ const Page = () => {
   const closeBtn = () => {
     setOpenModal(false);
   };
+  console.log(items);
   return (
     <section className="container">
-      {items.map(({ title, description, urlToImage }, i) => (
+       {items.map(({ name, type, card_images }, i) => (
         <div className="card" key={i} onClick={() => handleModal(i)}>
-          <div className="img-box">
-            <img src={`${urlToImage}`} />
-          </div>
           <div className="content">
-            <h2>{title}</h2>
-            <p>{description}</p>
+            <h2>{name}</h2>
+            <p>{type}</p>
+          </div>
+          <div className="img-box">
+            <img src={`${card_images[0].image_url}`} className="crop-img" alt={`${card_images[0].id}`} />
           </div>
         </div>
       ))}
-      {openModal &&
+     {openModal &&
         modalItems.map(
           (
-            { title, description, content, url, source, author, publishedAt },
+            { name, desc, type, archetype, race, frameType, card_images, card_sets },
             i
           ) => {
-            const getSquareBracketIndex = content.indexOf("[");
 
             return (
               <div className="modal" key={i}>
                 <div className="content">
                   <div className="header">
                     <div className="source">
-                      <h4>{source.name}</h4>
+                      <h4>{type}</h4>
                     </div>
                     <div className="close-btn" onClick={closeBtn}>
                       <span>
                         <IoClose />
                       </span>
                     </div>
-                    <h2>"{title}"</h2>
+                    <h2>"{name}"</h2>
+                    <div className="dual-box">
+
                     <p>
-                      {publishedAt.slice(0, 10)} : {author}
+                      {desc}
                     </p>
+                    <img src={`${card_images[0].image_url}`} className="crop-img-2" alt={`${card_images[0].id}`} width={180} />
+                    </div>
                   </div>
-                  <p className="paragraph">{description}</p>
+                  {card_sets && card_sets.map(({set_name, set_rarity, set_rarity_code}) => <div className="sets">
+                    <p className="paragraph">Set name: {set_name}</p>
+                    <p className="paragraph">Rarity: {set_rarity}</p>
+                    <p className="paragraph">Rarity: {set_rarity_code}</p>
+                  </div>)}
                 </div>
-                <p className="content-paragraph">
-                  {content.slice(0, getSquareBracketIndex)}{" "}
-                  <a href={`${url}`} target="_blank">
-                    Read more
-                  </a>
-                </p>
+                <p className="content-paragraph">Arche Type: <strong>{archetype}</strong></p>
+                <p className="content-paragraph">Race: <strong>{race}</strong></p>
               </div>
             );
           }

@@ -54,14 +54,31 @@
 }
 
 .card {
+  position: relative;
   width: 90%;
+  height: 240px;
   background: rgb(255, 255, 255);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 4px;
+  cursor: pointer;
+  border: 5px solid transparent;
+}
+
+.card:hover {
+  border: 5px solid rgb(14, 212, 238);
 }
 
 .img-box {
   width: 100%;
   height: 50%;
+}
+
+.crop-img {
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  clip-path: inset(10px 20px 30px 40px);
+  clip-path: polygon(10% 17%,90% 17%,90% 72%,10% 72%);
 }
 
 .card .img-box img {
@@ -78,7 +95,7 @@
 }
 
 .card .content h2 {
-  font-size: 1em;
+  font-size: 1.2em;
   font-weight: 900;
   line-height: 1.6;
   text-align: left;
@@ -87,10 +104,11 @@
 }
 
 .card .content p {
-  font-size: 0.75em;
+  font-size: 1em;
   line-height: 1.5;
-  text-align: left;
+  text-align: right;
   margin: 4px;
+  font-style: italic;
 }
 
 .modal {
@@ -108,6 +126,10 @@
   top: 10px;
   left: 0;
   background: rgb(18, 118, 225);
+}
+
+.source h4 {
+ padding: 2px;
 }
 
 .close-btn {
@@ -141,30 +163,22 @@
   margin-top: -16px;
 }
 
-.modal .content .paragraph {
+.sets {
+  display: flex;
+}
+
+.modal .content .sets .paragraph {
   font-size: 12px;
   font-style: italic;
   line-height: 1.5;
   text-align: left;
+  margin-left: 16px;
   padding-left: 4px;
   border-left: 10px solid #61dafb;
 }
 
-.modal .content .paragraph a {
-  position: relative;
-  left: 0;
-  text-decoration: none;
-  color: #ffffff;
-  margin-top: 2px;
-  padding: 2px 8px;
-  margin-left: 8px;
-  background: rgb(54, 128, 207);
-  border: 1px solid rgb(0, 0, 0);
-}
-
-.modal .content .paragraph a:hover {
-  background: rgb(161, 197, 236);
-  color: #000000;
+.modal .content .sets .paragraph:first-child {
+  margin-left: 0;
 }
 
 .modal .content-paragraph {
@@ -173,27 +187,67 @@
   text-align: left;
 }
 
-.modal .content-paragraph a {
-  position: relative;
-  left: 0;
-  text-decoration: none;
-  color: #ffffff;
-  margin-top: 2px;
-  padding: 2px 8px;
-  margin-left: 8px;
-  background: rgb(54, 128, 207);
-  border: 1px solid rgb(0, 0, 0);
-}
-
 .modal .content-paragraph a:hover {
   background: rgb(161, 197, 236);
   color: #000000;
 }
 
+.dual-box {
+  position: relative;
+  width: 100%;
+  height: 300px;
+}
+
+.dual-box p {
+  width: 60%;
+}
+
+.dual-box .crop-img-2 {
+  position: absolute;
+  top: -32px;
+  right: 10px;
+  clip-path: inset(10px 20px 30px 40px);
+  clip-path: polygon(10% 17%,90% 17%,90% 72%,10% 72%);
+}
 
 @media only screen and (min-device-width: 240px) and (max-device-width: 400px) {
   .container {
     display: flex;
     flex-direction: column;
+  }
+}
+
+@media only screen and (min-device-width: 600px) and (max-device-width: 1010px) {
+  .card .content p {
+    display: none;
+  }
+}
+
+@media only screen and (min-device-width: 480px) and (max-device-width: 600px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal {
+    width: 320px;
+  }
+
+  .modal .content .sets {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal .content .sets .paragraph {
+    margin-left: 0;
+  }
+
+  .dual-box p {
+    width: 100%;
+  }
+
+  .dual-box .crop-img-2 {
+    top: 100px;
+    left: 50px;
   }
 }
