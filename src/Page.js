@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { IoClose }from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 
 const Page = () => {
   const [items, setItems] = useState([]);
   const [modalItems, setModalItems] = useState([]);
 
   const [openModal, setOpenModal] = useState(false);
-
 
   useEffect(() => {
     fetch(
@@ -28,53 +27,53 @@ const Page = () => {
   };
   return (
     <section className="container">
-      {items.length === 0 ? (
-        <p>Content not available</p>
-      ) : (
-        items.map(({ title, description, urlToImage }, i) => (
-          <div className="card" key={i} onClick={() => handleModal(i)}>
-            <div className="img-box">
-              <img src={`${urlToImage}`} />
-            </div>
-            <div className="content">
-              <h2>{title}</h2>
-              <p>{description}</p>
-            </div>
+      {items.map(({ title, description, urlToImage }, i) => (
+        <div className="card" key={i} onClick={() => handleModal(i)}>
+          <div className="img-box">
+            <img src={`${urlToImage}`} />
           </div>
-        ))
-      )}
+          <div className="content">
+            <h2>{title}</h2>
+            <p>{description}</p>
+          </div>
+        </div>
+      ))}
       {openModal &&
         modalItems.map(
           (
             { title, description, content, url, source, author, publishedAt },
             i
-          ) => { 
-            const getSquareBracketIndex = content.indexOf('[');
+          ) => {
+            const getSquareBracketIndex = content.indexOf("[");
 
             return (
-            <div className="modal" key={i}>
-              <div className="content">
-                <div className="header">
-                  <div className="source">
-                    <h4>{source.name}</h4>
+              <div className="modal" key={i}>
+                <div className="content">
+                  <div className="header">
+                    <div className="source">
+                      <h4>{source.name}</h4>
+                    </div>
+                    <div className="close-btn" onClick={closeBtn}>
+                      <span>
+                        <IoClose />
+                      </span>
+                    </div>
+                    <h2>"{title}"</h2>
+                    <p>
+                      {publishedAt.slice(0, 10)} : {author}
+                    </p>
                   </div>
-                  <div className="close-btn" onClick={closeBtn}>
-                    <span>
-                      <IoClose />
-                    </span>
-                  </div>
-                  <h2>"{title}"</h2>
-                  <p>
-                    {publishedAt.slice(0, 10)} : {author}
-                  </p>
+                  <p className="paragraph">{description}</p>
                 </div>
-                <p className="paragraph">{description}</p>
+                <p className="content-paragraph">
+                  {content.slice(0, getSquareBracketIndex)}{" "}
+                  <a href={`${url}`} target="_blank">
+                    Read more
+                  </a>
+                </p>
               </div>
-              <p className="content-paragraph">
-                {content.slice(0, getSquareBracketIndex)} <a href={`${url}`} target="_blank">Read more</a>
-              </p>
-            </div>
-          )}
+            );
+          }
         )}
     </section>
   );
