@@ -1,5 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 .App {
   text-align: center;
+  background-image: radial-gradient(rgb(29, 223, 219), rgb(245, 118, 0));
+  font-family: "Lora", sans-serif;
 }
 
 .App-logo {
@@ -34,5 +40,160 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 12px;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  padding: 8px;
+}
+
+.card {
+  width: 100%;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.img-box {
+  width: 100%;
+  height: 50%;
+}
+
+.card .img-box img {
+  width: 100%;
+  height: 100%;
+}
+
+.card .content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 50%;
+}
+
+.card .content h2 {
+  font-size: 1em;
+  font-weight: 900;
+  line-height: 1.6;
+  text-align: left;
+  margin: 0;
+  padding: 4px;
+}
+
+.card .content p {
+  font-size: 0.75em;
+  line-height: 1.5;
+  text-align: left;
+  margin: 4px;
+}
+
+.modal {
+  position: fixed;
+  top: 25%;
+  width: 480px;
+  background: rgb(255, 255, 255);
+  z-index: 10;
+  padding: 8px 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.source {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  background: rgb(18, 118, 225);
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.close-btn:hover {
+  border: 2px solid rgb(18, 118, 225);
+}
+
+.source h4 {
+  position: relative;
+  margin: 2px 4px;
+}
+
+.modal .content h2 {
+  line-height: 1.8;
+  text-align: left;
+  margin-top: 28px;
+}
+
+.modal .content .header p {
+  font-size: 12px;
+  font-weight: 500;
+  color: #a7a7a9;
+  text-align: left;
+  margin-top: -16px;
+}
+
+.modal .content .paragraph {
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.5;
+  text-align: left;
+  padding-left: 4px;
+  border-left: 10px solid #61dafb;
+}
+
+.modal .content .paragraph a {
+  position: relative;
+  left: 0;
+  text-decoration: none;
+  color: #ffffff;
+  margin-top: 2px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  background: rgb(54, 128, 207);
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.modal .content .paragraph a:hover {
+  background: rgb(161, 197, 236);
+  color: #000000;
+}
+
+.modal .content-paragraph {
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.modal .content-paragraph a {
+  position: relative;
+  left: 0;
+  text-decoration: none;
+  color: #ffffff;
+  margin-top: 2px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  background: rgb(54, 128, 207);
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.modal .content-paragraph a:hover {
+  background: rgb(161, 197, 236);
+  color: #000000;
+}
+
+
+@media only screen and (min-device-width: 240px) and (max-device-width: 400px) {
+  .container {
+    display: flex;
+    flex-direction: column;
   }
 }
