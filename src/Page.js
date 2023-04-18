@@ -7,7 +7,6 @@ const Page = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
-  console.log(useEffect);
 
   useEffect(() => {
     fetch(
@@ -18,14 +17,11 @@ const Page = () => {
         setItems(data.articles.slice(0, 9));
       });
   }, []);
-  console.log(items);
 
   const handleModal = (i) => {
-    console.log(i);
     setOpenModal(true);
     setModalItems([items[i]]);
   };
-  console.log(modalItems);
 
   const closeBtn = () => {
     setOpenModal(false);
